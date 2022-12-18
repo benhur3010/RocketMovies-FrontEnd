@@ -1,30 +1,8 @@
-<p align="center">
-  <h1 align="center">RocketMovies (Frontend) - Rocketseat Explorer :rocket: </h1>
-</p>
+- Instalação do Vite que é um setup pronto que traz as configurações necessárias para realizar o projeto.
 
-Este é o resultado final do desafio RocketMovies, realizado no Stage 09.
+- Utilizei Styled Components, que foi desenvolvido para melhorar a maneira que lidamos com CSS nos componentes de aplicações React. As vantagens são: sem colisão de classes, desempenho, estilo dinâmico, manutenção sem dor, boas práticas.
+Instalação dessa forma: "npm install --save styled-components".
 
-## 💻 Sobre
-O RocketMovies é uma aplicação web para você cadastrar filmes. Após se registrar na plataforma, o usuário estará apto a cadastrar os filmes que desejar. Para cada filme cadastrado será solicitada a inserção de um título, uma nota e uma breve descrição. Como opcional, será possível a inserção de tags para melhor identificação do filme. O projeto conta com ainda com a possibilidade de customização do perfil do usuário, como avatar, nome e senha.
+- Instalar uma extensão no VSCode "vscode-styled-components".
 
-Este repositório contém os dados do Frontend da aplicação em React.js.
-
-___
-
-O Backend deste projeto você encontrará neste repositório [AQUI](https://github.com/benhur3010/RocketNotes)
-
-
-## 🎨 Layout
-A página inicial em formato desktop é vista na imagem abaixo:
-
-![RocketMovies - Ben-Hur Bueno](https://raw.githubusercontent.com/benhur3010/RocketMovies/main/src/assets/preview.png)
-
-
-## 🛠 Tecnologias
-
-As seguintes tecnologias foram empregadas na criação deste projeto:
-
-- [ReactJs](https://reactjs.org)
-- [Javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
-- [Vite](https://vitejs.dev/)
-___
+- Instalei o react-hook-form para setar campos automáticos quando digitar o CEP.

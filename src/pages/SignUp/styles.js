@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const Form = styled.form`
   display: flex;
-  padding: 0 13.4rem;
+  padding: 3rem 13.4rem;
   flex-direction: column;
   justify-content: center;
   gap: 0.8rem;
