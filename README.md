@@ -6,3 +6,10 @@ Instalação dessa forma: "npm install --save styled-components".
 - Instalar uma extensão no VSCode "vscode-styled-components".
 
 - Instalei o react-hook-form para setar campos automáticos quando digitar o CEP.
+
+- Instalação do Axios. É uma biblioteca para trabalhar com requisições http, como: post, update, etc...
+
+- Hooks permite que você use estados e outros recursos do React sem escrever uma classe. Encapsula funcionalidades e facilita o reaproveitamento da sua lógica. Utiliei useState e useEffect.
+
+- Utilização do localstorage para guardar informações no navegador.
+

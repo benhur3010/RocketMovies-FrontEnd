@@ -15,7 +15,7 @@ import { HiOutlineIdentification } from "react-icons/hi";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import { api } from "../../services/api.js";
@@ -34,6 +34,8 @@ export function SignUp() {
   const [uf, setUF] = useState("");
   const [complement, setComplement] = useState("");
 
+  const navigate = useNavigate();
+
   function handleSignUp() {
     if (
       !name ||
@@ -50,36 +52,30 @@ export function SignUp() {
       return alert("Preencha todos os campos!");
     }
 
-    const regexCPF = /^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/;
-
-    if (register.match(regexCPF)) {
-      fetch(`${api.baseURL}/users`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ name, email, password })
+    api
+      .post("/users", {
+        name,
+        email,
+        password,
+        register,
+        phone,
+        street,
+        streetNumber,
+        neighborhood,
+        city,
+        uf
       })
-        .then(response => {
-          if (response.ok) {
-            return alert("Usuário criado com sucesso!");
-          }
-          return response.text().then(text => {
-            throw new Error(text);
-          });
-        })
-        .catch(e => {
-          if (e) {
-            const errorObject = JSON.parse(e.message);
-            alert(errorObject.message);
-          } else {
-            alert("Um erro ocorreu!");
-          }
-        });
-    } else {
-      return alert("CPF Inválido!");
-    }
+      .then(() => {
+        alert("Usuário cadastrado com sucesso!");
+        navigate("/");
+      })
+      .catch(error => {
+        if (error.response) {
+          alert(error.response.data.message);
+        } else {
+          alert("Não foi possível cadastrar");
+        }
+      });
   }
 
   useEffect(() => {
