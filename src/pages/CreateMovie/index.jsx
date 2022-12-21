@@ -21,6 +21,10 @@ export function CreateMovie() {
 
   const navigate = useNavigate();
 
+  function handleBack() {
+    navigate(-1);
+  }
+
   function handleAddTag() {
     setTags(prevState => [...prevState, newTag]);
     setNewTag("");
@@ -30,7 +34,7 @@ export function CreateMovie() {
     setTags(prevState => prevState.filter(tag => tag !== deleted));
   }
 
-  async function handleNewMovie() {
+  async function handleNewMovie(e) {
     if (!title) {
       return alert("Digite o título da nota");
     }
@@ -48,7 +52,7 @@ export function CreateMovie() {
     });
 
     alert("Nota criada com sucesso!");
-    navigate("/");
+    navigate(-1);
   }
 
   return (
@@ -56,7 +60,7 @@ export function CreateMovie() {
       <Header />
       <main>
         <Form>
-          <Link to="/">
+          <Link onClick={handleBack}>
             <FiArrowLeft />
             Voltar
           </Link>
@@ -93,8 +97,9 @@ export function CreateMovie() {
             />
           </TagArea>
           <section>
-            <button>Excluir filme</button>
-            <button onClick={handleNewMovie}>Salvar Alterações</button>
+            <button type="button" onClick={handleNewMovie}>
+              Salvar Alterações
+            </button>
           </section>
         </Form>
       </main>

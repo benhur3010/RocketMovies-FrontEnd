@@ -19,6 +19,7 @@ export const Content = styled.div`
   max-width: 50rem;
   margin: 0 auto;
   display: flex;
+
   flex-direction: column;
   > a {
     color: ${({ theme }) => theme.COLORS.PINK};

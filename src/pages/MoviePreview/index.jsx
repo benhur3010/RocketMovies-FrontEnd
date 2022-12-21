@@ -1,48 +1,70 @@
 import { Header } from "../../components/Header";
-import { Tag } from "../../components/Tag";
+import { Button } from "../../components/Button";
 import { Info } from "../../components/Info";
 import { Picture } from "../../components/Picture";
+import { useAuth } from "../../hooks/auth";
 
 import { FiArrowLeft, FiClock } from "react-icons/fi";
 
 import { Container, Content, Title, Stamps } from "./styles";
 
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { api } from "../../services/api";
 
 export function MoviePreview() {
+  const [preview, setPreview] = useState({});
+
+  const params = useParams();
+
+  const { user } = useAuth();
+
+  const navigate = useNavigate();
+
+  function handleBack() {
+    navigate(-1);
+  }
+
+  async function handleRemove() {
+    const confirm = window.confirm("Deseja realmente remover a nota?");
+
+    if (confirm) {
+      await api.delete(`/notes/${params.id}`);
+      navigate(-1);
+    }
+  }
+
+  useEffect(() => {
+    async function getData() {
+      const response = await api.get(`/notes/${params.id}`);
+
+      setPreview(response.data);
+    }
+    getData();
+  }, []);
+
   return (
     <Container>
       <Header />
       <main>
         <Content>
-          <Link to="/">
+          <Link onClick={handleBack}>
             <FiArrowLeft size={20} />
             Voltar
           </Link>
           <Title>
-            <h1>Van Helsing - O Caçador de Monstros</h1>
-            <span>10</span>
+            <h1>{preview.title}</h1>
+            <span>{preview.rating}</span>
           </Title>
           <Stamps>
-            <Info icon={Picture}>por Ben-Hur Bueno</Info>
-            <Info icon={FiClock}>14/11/2022 às 18:05</Info>
+            <Info icon={Picture}>{user.name}</Info>
+            <Info icon={FiClock}>{"12:45"}</Info>
           </Stamps>
-          <section>
-            <Tag name="Aventura" />
-            <Tag name="Ação" />
-            <Tag name="Fantasia" />
-          </section>
-          <p>
-            O Dr. Van Helsing (Hugh Jackman) é um dos principais especialistas
-            em monstros de sua época, no século XIX. Contratado pela Igreja
-            Católica, ele parte para o leste europeu com a missão de eliminar o
-            mais perigoso dos vampiros: o conde Drácula (Richard Roxburgh). Ao
-            seu lado ele terá a ajuda de Anna Valerious (Kate Beckinsale), tendo
-            ainda que enfrentar monstros como o lobisomem (Will Kemp) e
-            Frankenstein (Shuler Hensley).
-          </p>
+          <section>{preview.tag}</section>
+          <p>{preview.description}</p>
         </Content>
       </main>
+      <Button title="Excluir" onClick={handleRemove} />
     </Container>
   );
 }

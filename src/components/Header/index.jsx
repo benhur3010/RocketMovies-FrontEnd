@@ -9,18 +9,42 @@ import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 import { Container, Profile, Logout } from "./styles";
 
 import { Input } from "../Input";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Header() {
   const { signOut, user } = useAuth();
+  const navigation = useNavigate();
+
+  function handleSignOut() {
+    navigation("/");
+    signOut();
+  }
 
   const avatarURL = user.avatar
     ? `${api.defaults.baseURL}/files/${user.avatar}`
     : avatarPlaceholder;
 
+  const [search, setSearch] = useState("");
+  const [notes, setNotes] = useState([]);
+
+  useEffect(() => {
+    async function fetchNotes() {
+      const response = await api.get(`/notes?title=${search}`);
+      setNotes(response.data);
+    }
+    fetchNotes();
+  }, [search]);
+
   return (
     <Container>
       <h2>RocketMovies</h2>
-      <Input icon={FiSearch} placeholder="Pesquisar pelo título" type="text" />
+      <Input
+        icon={FiSearch}
+        placeholder="Pesquisar pelo título"
+        type="text"
+        onChange={e => setSearch(e.target.value)}
+      />
       <Profile to="/profile">
         <div>
           <strong>{user.name}</strong>
@@ -28,7 +52,7 @@ export function Header() {
         <img src={avatarURL} alt="Foto do usuário"></img>
       </Profile>
 
-      <Logout onClick={signOut}>
+      <Logout onClick={handleSignOut}>
         <RiShutDownLine />
       </Logout>
     </Container>

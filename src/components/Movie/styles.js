@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  cursor: pointer;
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_LIGHT};
   padding: 3.2rem 3.2rem;
   border-radius: 16px;
   width: 100%;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
   > p {
     margin: 1.5rem 0;
   }

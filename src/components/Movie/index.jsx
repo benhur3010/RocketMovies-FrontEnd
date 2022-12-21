@@ -1,10 +1,13 @@
 import { Container, Info } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 import { Tag } from "../Tag";
 
 export function Movie({ data, ...rest }) {
+  const navigate = useNavigate();
+
   return (
-    <Container {...rest}>
+    <Container onClick={() => navigate(`/preview/${data.id}`)} {...rest}>
       <Info>
         <h1>{data.title}</h1>
         <span>{data.rating}</span>

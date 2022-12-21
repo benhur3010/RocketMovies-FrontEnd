@@ -36,18 +36,8 @@ export const Form = styled.form`
     margin-top: 4rem;
     display: flex;
     gap: 4rem;
+ 
     button:nth-child(1) {
-      width: 100%;
-      background-color: ${({ theme }) => theme.COLORS.BACKGROUND_DARKER};
-      color: ${({ theme }) => theme.COLORS.PINK};
-      height: 5.6rem;
-      border: 0;
-      padding: 0 1.6rem;
-      border-radius: 10px;
-      font-weight: 500;
-      font-size: 1.6rem;
-    }
-    button:nth-child(2) {
       width: 100%;
       background-color: ${({ theme }) => theme.COLORS.PINK};
       color: ${({ theme }) => theme.COLORS.BACKGROUND_DARKER};
