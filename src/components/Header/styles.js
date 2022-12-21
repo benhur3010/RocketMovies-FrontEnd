@@ -34,13 +34,21 @@ export const Profile = styled(Link)`
     color: ${({ theme }) => theme.COLORS.WHITE};
     align-self: flex-end;
   }
-  span {
-    font-size: 1.4rem;
-    color: ${({ theme }) => theme.COLORS.GRAY_TEXT};
-  }
+
   > img {
     width: 6.4rem;
     height: 6.4rem;
     border-radius: 50%;
   }
 `;
+
+export const Logout = styled.button`
+border: none;
+background: none;
+
+> svg {
+  color: ${({ theme }) => theme.COLORS.GRAY_TEXT};
+  font-size: 2.4rem;
+
+}
+`

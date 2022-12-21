@@ -7,9 +7,9 @@ export function Movie({ data, ...rest }) {
     <Container {...rest}>
       <Info>
         <h1>{data.title}</h1>
-        <span>{data.score}</span>
+        <span>{data.rating}</span>
       </Info>
-      <p>{data.summary}</p>
+      <p>{data.description}</p>
       {data.tags && (
         <footer>
           {data.tags.map(tag => (

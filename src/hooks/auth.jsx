@@ -16,9 +16,8 @@ function AuthProvider({ children }) {
       localStorage.setItem("@rocketmovies:user", JSON.stringify(user));
       localStorage.setItem("@rocketmovies:token", token);
 
-      api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       setData({ user, token });
-
     } catch (error) {
       if (error.response) {
         alert(error.response.data.message);
@@ -28,12 +27,43 @@ function AuthProvider({ children }) {
     }
   }
 
+  function signOut() {
+    const token = localStorage.removeItem("@rocketmovies:token");
+    const user = localStorage.removeItem("@rocketmovies:user");
+
+    setData({});
+  }
+
+  async function updateProfile({ user, avatarFile }) {
+    try {
+      if (avatarFile) {
+        const fileUploadForm = new FormData();
+        fileUploadForm.append("avatar", avatarFile);
+
+        const response = await api.patch("/users/avatar", fileUploadForm);
+        user.avatar = response.data.avatar;
+      }
+
+      await api.put("/users", user);
+      localStorage.setItem("@rocketmovies:user", JSON.stringify(user));
+
+      setData({ user, token: data.token });
+      alert("Perfil atualizado com sucesso!");
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message);
+      } else {
+        alert("Não foi possível atualizar o perfil.");
+      }
+    }
+  }
+
   useEffect(() => {
     const token = localStorage.getItem("@rocketmovies:token");
     const user = localStorage.getItem("@rocketmovies:user");
 
     if (token && user) {
-      api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
       setData({
         token,
@@ -43,7 +73,9 @@ function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signIn, user: data.user }}>
+    <AuthContext.Provider
+      value={{ signIn, user: data.user, signOut, updateProfile }}
+    >
       {children}
     </AuthContext.Provider>
   );

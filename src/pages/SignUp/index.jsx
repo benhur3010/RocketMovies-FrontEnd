@@ -43,6 +43,7 @@ export function SignUp() {
       !password ||
       !register ||
       !phone ||
+      !postalcode ||
       !street ||
       !streetNumber ||
       !neighborhood ||
@@ -59,11 +60,13 @@ export function SignUp() {
         password,
         register,
         phone,
+        postalcode,
         street,
         streetNumber,
         neighborhood,
         city,
-        uf
+        uf,
+        complement
       })
       .then(() => {
         alert("Usuário cadastrado com sucesso!");
