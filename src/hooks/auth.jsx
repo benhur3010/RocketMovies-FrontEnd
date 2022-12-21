@@ -1,5 +1,3 @@
-// Hook de autenticação onde está centralizada a lógica de utilização do contexto, para compartilhar os dados do usuário com toda a aplicação.
-
 import { createContext, useContext, useState, useEffect } from "react";
 import { api } from "../services/api";
 
