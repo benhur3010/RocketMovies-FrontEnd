@@ -17,7 +17,7 @@ O Backend deste projeto você encontrará neste repositório [AQUI](https://gith
 ## 🎨 Layout
 A página inicial em formato desktop é vista na imagem abaixo:
 
-![RocketMovies - Ben-Hur Bueno](https://raw.githubusercontent.com/benhur3010/RocketMovies/main/src/assets/preview.png)
+![RocketMovies - Ben-Hur Bueno](https://raw.githubusercontent.com/benhur3010/RocketMovies-FrontEnd/main/src/assets/preview.png)
 
 
 ## 🛠 Tecnologias
