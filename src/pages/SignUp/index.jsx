@@ -55,32 +55,36 @@ export function SignUp() {
       return alert("Preencha todos os campos!");
     }
 
-    api
-      .post("/users", {
-        name,
-        email,
-        password,
-        register,
-        phone,
-        postalcode,
-        street,
-        streetNumber,
-        neighborhood,
-        city,
-        uf,
-        complement
-      })
-      .then(() => {
-        alert("Usuário cadastrado com sucesso!");
-        navigate("/");
-      })
-      .catch(error => {
-        if (error.response) {
-          alert(error.response.data.message);
-        } else {
-          alert("Não foi possível cadastrar");
-        }
-      });
+    if (register.match(regexCPF)) {
+      api
+        .post("/users", {
+          name,
+          email,
+          password,
+          register,
+          phone,
+          postalcode,
+          street,
+          streetNumber,
+          neighborhood,
+          city,
+          uf,
+          complement
+        })
+        .then(() => {
+          alert("Usuário cadastrado com sucesso!");
+          navigate("/");
+        })
+        .catch(error => {
+          if (error.response) {
+            alert(error.response.data.message);
+          } else {
+            alert("Não foi possível cadastrar");
+          }
+        });
+    } else {
+      return alert("CPF Inválido!");
+    }
   }
 
   useEffect(() => {
@@ -98,8 +102,6 @@ export function SignUp() {
       getCEP();
     }
   }, [postalcode]);
-
-  
 
   function checkCEP() {
     if (postalcode.length !== 8) {
