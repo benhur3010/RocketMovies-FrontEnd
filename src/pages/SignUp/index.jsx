@@ -36,6 +36,8 @@ export function SignUp() {
 
   const navigate = useNavigate();
 
+  const regexCPF = /^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/;
+
   function handleSignUp() {
     if (
       !name ||
@@ -96,6 +98,8 @@ export function SignUp() {
       getCEP();
     }
   }, [postalcode]);
+
+  
 
   function checkCEP() {
     if (postalcode.length !== 8) {
