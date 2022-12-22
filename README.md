@@ -11,7 +11,7 @@ Este repositório contém os dados do Frontend da aplicação em React.js.
 
 ___
 
-O Backend deste projeto você encontrará neste repositório [AQUI](https://github.com/benhur3010/RocketNotes)
+O Backend deste projeto você encontrará neste repositório [AQUI](https://github.com/benhur3010/RocketMovies-BackEnd)
 
 
 ## 🎨 Layout
