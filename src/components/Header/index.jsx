@@ -16,25 +16,16 @@ export function Header() {
   const { signOut, user } = useAuth();
   const navigation = useNavigate();
 
-  function handleSignOut() {
-    navigation("/");
-    signOut();
-  }
-
   const avatarURL = user.avatar
     ? `${api.defaults.baseURL}/files/${user.avatar}`
     : avatarPlaceholder;
 
   const [search, setSearch] = useState("");
-  const [notes, setNotes] = useState([]);
 
-  useEffect(() => {
-    async function fetchNotes() {
-      const response = await api.get(`/notes?title=${search}`);
-      setNotes(response.data);
-    }
-    fetchNotes();
-  }, [search]);
+  function handleSignOut() {
+    navigation("/");
+    signOut();
+  }
 
   return (
     <Container>
