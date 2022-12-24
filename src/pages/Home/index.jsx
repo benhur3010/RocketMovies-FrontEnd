@@ -13,27 +13,22 @@ import { api } from "../../services/api";
 export function Home() {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
-  const [notes, setNotes] = useState([]);
 
-  useEffect(() => {
-    async function getData() {
-      const response = await api.get("/notes");
-      setMovies(response.data);
-    }
-    getData();
-  }, []);
+  function handleChange(event) {
+    setSearch(event.target.value);
+  }
 
   useEffect(() => {
     async function fetchNotes() {
       const response = await api.get(`/notes?title=${search}`);
-      setNotes(response.data);
+      setMovies(response.data);
     }
     fetchNotes();
   }, [search]);
 
   return (
     <Container>
-      <Header onChange={setSearch}/>
+      <Header handleChange={handleChange} search={search} />
       <Title>
         <h1>Meus filmes</h1>
         <Link to="/new">

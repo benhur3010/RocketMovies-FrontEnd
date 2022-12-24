@@ -9,10 +9,10 @@ import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 import { Container, Profile, Logout } from "./styles";
 
 import { Input } from "../Input";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-export function Header() {
+export function Header({ handleChange, search }) {
   const { signOut, user } = useAuth();
   const navigation = useNavigate();
 
@@ -20,12 +20,23 @@ export function Header() {
     ? `${api.defaults.baseURL}/files/${user.avatar}`
     : avatarPlaceholder;
 
-  const [search, setSearch] = useState("");
+  const [isHomePage, setIsHomePage] = useState(true);
 
   function handleSignOut() {
     navigation("/");
     signOut();
   }
+
+  useEffect(() => {
+    function whereIsPage() {
+      if (window.location.pathname == "/") {
+        setIsHomePage(true);
+      } else {
+        setIsHomePage(false);
+      }
+    }
+    whereIsPage();
+  }, []);
 
   return (
     <Container>
@@ -34,7 +45,9 @@ export function Header() {
         icon={FiSearch}
         placeholder="Pesquisar pelo título"
         type="text"
-        onChange={e => setSearch(e.target.value)}
+        value={search}
+        onChange={e => handleChange(e)}
+        disabled={isHomePage ? false : true}
       />
       <Profile to="/profile">
         <div>

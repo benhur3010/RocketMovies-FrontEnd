@@ -63,8 +63,10 @@ export const TextArea = styled.textarea`
   border: 0;
   outline: none;
   font-size: 1.6rem;
+  font-family: "Roboto Slab", sans-serif;
   ::placeholder {
     color: ${({ theme }) => theme.COLORS.GRAY_TEXT};
+   
   }
 `;
 

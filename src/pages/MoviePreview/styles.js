@@ -35,6 +35,7 @@ export const Content = styled.div`
   > p {
     margin-top: 4rem;
     text-align: justify;
+    margin-bottom: 2rem;
   }
 `;
 

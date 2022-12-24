@@ -40,6 +40,7 @@ export function MoviePreview() {
 
       setPreview(response.data);
     }
+
     getData();
   }, []);
 
@@ -58,13 +59,15 @@ export function MoviePreview() {
           </Title>
           <Stamps>
             <Info icon={Picture}>{user.name}</Info>
-            <Info icon={FiClock}>{"12:45"}</Info>
+            <Info icon={FiClock}>
+              {String(preview.updated_at).split(" ")[1]}
+            </Info>
           </Stamps>
           <section>{preview.tag}</section>
           <p>{preview.description}</p>
+      <Button title="Excluir" onClick={handleRemove} />
         </Content>
       </main>
-      <Button title="Excluir" onClick={handleRemove} />
     </Container>
   );
 }
