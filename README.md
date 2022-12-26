@@ -11,9 +11,9 @@ Este repositório contém os dados do Frontend da aplicação em React.js.
 
 ___
 
-O Backend deste projeto você encontrará neste repositório [AQUI](https://github.com/benhur3010/RocketMovies-BackEnd)
+O BackEnd deste projeto você encontrará neste repositório [AQUI](https://github.com/benhur3010/RocketMovies-BackEnd)
 
-O Link para acesso do Deploy você encontrará [AQUI](https://rocketmovies-benhur.netlify.app)
+O link para acesso do Deploy você encontrará [AQUI](https://rocketmovies-benhur.netlify.app)
 
 
 ## 🎨 Layout
