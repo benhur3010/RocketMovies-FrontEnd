@@ -13,6 +13,8 @@ ___
 
 O Backend deste projeto você encontrará neste repositório [AQUI](https://github.com/benhur3010/RocketMovies-BackEnd)
 
+O Link para acesso do Deploy você encontrará [AQUI](https://rocketmovies-benhur.netlify.app)
+
 
 ## 🎨 Layout
 A página inicial em formato desktop é vista na imagem abaixo:
